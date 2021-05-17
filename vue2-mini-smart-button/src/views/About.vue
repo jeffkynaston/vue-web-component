@@ -7,7 +7,7 @@
     <div class="parent-chat-wrapper">
       <Chat :member="member" 
             :unreadCount="unreadCount" 
-            @increment-chat="incrementEmitCount"
+            v-on:increment="incrementEmitCount"
             :incrementUnreadCount="incrementUnreadCount"/>
     </div>
   </div>
@@ -39,7 +39,7 @@ export default {
       this.emitCount += 1;
       
     }
-  },
+  }
 }
 </script>
 
