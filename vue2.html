@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 Vue2 Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="vue2-mini-smart-button/dist/chat-component.js"></script>
+</head>
+<body>
+    <script>
+        let globalCount = 0;
+        function setListener() {
+            document.getElementById('counter-wrapper').style = 'display: inline;'
+            document.getElementById('chat-component').addEventListener(
+                'increment',
+                function(event) {
+                    console.log('increment fired!')
+                    globalCount += 1;
+                    document.getElementById('global-count').innerHTML = globalCount;
+                }
+            )
+        }
+    </script>
+    <h1>HTML5 Vue2 Application Wrapper</h1>
+    <div>
+        <button onclick="setListener()"> set listener </button>
+        <span id="counter-wrapper" style="display: none;">
+            new message count: <span id="global-count"> 0 </span>
+        </span>
+        
+    </div>
+    <div style="margin: 20px; position: relative; height: 600px; width: 400px;">
+        <chat-component 
+        id='chat-component'
+        member-string='{"name":"jeff"}' 
+        unread-count="1" />
+    </div>
+</body>
+</html>

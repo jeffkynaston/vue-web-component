@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML5 Example</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-    <script src="vue2-mini-smart-button/dist/chat-component.js"></script>
+    <title>HTML5 Vue3 Example</title>
+
+    <link href="mini-smart-button/dist/css/about.6bce717f.css" rel="prefetch">
+    <link href="mini-smart-button/dist/js/about.4355b0d6.js" rel="prefetch">
+    <link href="mini-smart-button/dist/css/app.4d6f730e.css" rel="preload" as="style">
+    <link href="mini-smart-button/dist/js/app.bb9ecf4e.js" rel="preload" as="script">
+    <link href="mini-smart-button/dist/js/chunk-vendors.c01861ce.js" rel="preload" as="script">
+    <link href="mini-smart-button/dist/css/app.4d6f730e.css" rel="stylesheet">
 </head>
 <body>
     <script>
@@ -23,7 +28,7 @@
             )
         }
     </script>
-    <h1>HTML5 Application Wrapper</h1>
+    <h1>HTML5 Vue3 Application Wrapper</h1>
     <div>
         <button onclick="setListener()"> set listener </button>
         <span id="counter-wrapper" style="display: none;">
@@ -32,10 +37,9 @@
         
     </div>
     <div style="margin: 20px; position: relative; height: 600px; width: 400px;">
-        <chat-component 
-        id='chat-component'
-        member-string='{"name":"jeff"}' 
-        unread-count="1" />
+        <div id="app"></div>
+        <script src="mini-smart-button/dist/js/chunk-vendors.c01861ce.js"></script>
+        <script src="mini-smart-button/dist/js/app.bb9ecf4e.js"></script>
     </div>
 </body>
 </html>

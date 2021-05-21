@@ -1,9 +1,9 @@
 <template>
-  <div class="chat-container">
+  <div class="chat-container" id="chat-component">
       <div v-for="(message, index) in messages" 
       :key="index" 
       class="message-container" 
-      v-bind:class="{'from-user' : message.from == member.name}">
+      v-bind:class="{'from-user' : (message.from == member.name) || (message.from == 'user')}">
           <div class="message-from">{{message.from}}</div>
           <div class="message-text">{{message.text}}</div>
       </div>
@@ -15,18 +15,18 @@
 export default {
   name: 'Chat',
   props: {
-            memberString: {
-                type: String,
-                required: true,
-            },
-            unreadCount: {
-                type: Number,
-                required: true,
-            },
-            incrementUnreadCount: {
-                type: Function, 
-                required: true,
-            }
+        memberString: {
+            type: String,
+            required: true,
+        },
+        unreadCount: {
+            type: Number,
+            required: true,
+        },
+        incrementUnreadCount: {
+            type: Function, 
+            required: false,
+        }
     },
   data: function() {
       return {
@@ -36,11 +36,11 @@ export default {
                   text: 'hello',
               },
               {
-                  from: this.member.name,
+                  from: 'user',
                   text: 'hello!',
               },
               {
-                  from: this.member.name,
+                  from: 'user',
                   text: 'I need help!',
               },
               {
@@ -52,11 +52,11 @@ export default {
                   text: 'no promises..',
               },  
               {
-                  from: this.member.name,
+                  from: 'user',
                   text: 'nice okay!',
               },
               {
-                  from: this.member.name,
+                  from: 'user',
                   text: 'thanks for trying',
               },            
               {
@@ -76,15 +76,30 @@ export default {
               from: this.member.name,
               text: 'new chat!',
           });
-          this.incrementUnreadCount();
+          if (this.incrementUnreadCount) this.incrementUnreadCount();
         //   this.unreadCount += 1; // causes error, doesn't increment;
-          this.$emit('incrementChat');
+          this.$emit('increment');
+
+
+        var event = document.createEvent("HTMLEvents");
+        event.initEvent("increment", true, true);
+        event.eventName = "increment";
+        var element = document.getElementById('chat-component')
+        element.dispatchEvent(event);
       }
   },
   computed: {
     member() {
-        return JSON.parse(memberString)
+        console.log('this.memberString = ', this.memberString);
+        if (this.memberString) {
+            return JSON.parse(this.memberString)
+        } else {
+            return {}
+        }
     }
+  },
+  mounted() {
+      console.log('hello world we are mounted');
   }
 }
 </script>
